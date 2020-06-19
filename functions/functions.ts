@@ -7,16 +7,18 @@ function add(x: any, y: any) {
 }
 
 //https://www.typescriptlang.org/docs/handbook/basic-types.html#array
+//Note the return type is inferred: https://www.typescriptlang.org/docs/handbook/functions.html#inferring-the-types
 function sum(numberArray: number[]) {
   return numberArray.reduce((a, b) => a + b, 0);
 }
 
 /**
  * Subtract two numbers (jsdoc)
+ * https://www.typescriptlang.org/docs/handbook/functions.html#optional-and-default-parameters
  * @param x the first number
  * @param y the scond number
  */
-function subtract(x: number, y: number): number {
+function subtract(x: number, y: number = 1): number {
   return x - y;
 }
 
@@ -25,7 +27,7 @@ function stringify(obj: object) {
   return JSON.stringify(obj);
 }
 
-//interface
+//interface https://www.typescriptlang.org/docs/handbook/interfaces.html
 interface Person {
   firstName: string;
   /** sometimes referred to as surname */
@@ -39,6 +41,8 @@ function fullName(person: Person) {
 //extend an interface
 /**
  * A person with more properties
+ * https://www.typescriptlang.org/docs/handbook/interfaces.html#extending-interfaces
+ * https://www.typescriptlang.org/docs/handbook/interfaces.html#optional-properties
  */
 interface FullPerson extends Person {
   age?: number; //optional argument
@@ -57,9 +61,39 @@ function getHexCode(color: 'red' | 'blue' | 'green') {
   }
 }
 
+//enums https://www.typescriptlang.org/docs/handbook/basic-types.html#enum
+enum HexColor {
+  red,
+  blue,
+  green,
+}
+
+function getHexCodeEnum(color: HexColor) {
+  switch (color) {
+    case HexColor.red:
+      return '#FF0000';
+    case HexColor.blue:
+      return '#0000FF';
+    case HexColor.green:
+      return '#00FF00';
+  }
+}
+
+function createRandomStudent(id: number) {
+  //Type assertions https://www.typescriptlang.org/docs/handbook/basic-types.html#type-assertions
+  const newStudent = {
+    id,
+    person: null as Person,
+  };
+
+  newStudent.person = { firstName: 'Jane', lastName: 'Doe' };
+  //api.createStudent(newStudent);
+}
+
 function demo() {
   console.log(add('1', 2));
   console.log(subtract(1, 2));
+  console.log(subtract(1));
   console.log(stringify({ x: 1, y: 2 }));
   console.log(fullName({ firstName: 'Adam', lastName: 'Miller' }));
 
@@ -73,4 +107,6 @@ function demo() {
 
   //const colors = { blue: 'blue' };
   console.log(getHexCode('blue'));
+  //or 0
+  console.log(getHexCodeEnum(HexColor.green));
 }

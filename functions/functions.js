@@ -48,6 +48,7 @@ function demo() {
   const person = {
     firstName: 'Adam',
     lastName: 'Miller',
+    old: true,
   };
 
   console.log(fullName(person));
