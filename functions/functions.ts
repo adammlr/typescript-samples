@@ -90,6 +90,14 @@ function createRandomStudent(id: number) {
   //api.createStudent(newStudent);
 }
 
+//function types https://www.typescriptlang.org/play/index.html?e=164#example/typing-functions
+function submitRequest(successCallback: (x: number) => void) {
+  fetch('https://jsonplaceholder.typicode.com/todos/1m')
+    .then((response) => response.json())
+    .then((data) => successCallback(data.id));
+}
+//type successCallback = (x: number) => void;
+
 function demo() {
   console.log(add('1', 2));
   console.log(subtract(1, 2));

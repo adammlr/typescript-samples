@@ -39,6 +39,14 @@ function getHexCode(color) {
   }
 }
 
+function submitRequest(successCallback) {
+  fetch('https://jsonplaceholder.typicode.com/todos/1m')
+    .then((response) => response.json())
+    .then((data) => successCallback(data.id));
+}
+
+//TODO: generics
+
 function demo() {
   console.log(add(1, 2));
   console.log(subtract(1, 2));
