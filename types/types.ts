@@ -35,6 +35,14 @@ function submitRequest(successCallback: (x: number) => void) {
 }
 //type successCallback = (x: number) => void;
 
+const cache = new Map<number, string>();
+function addToCache(key: number, value: string) {
+  cache.set(key, value);
+}
+function getFromCache(key: number) {
+  return cache.get(key);
+}
+
 function demoFunction() {
   add('1', 2);
   subtract(1, 2);

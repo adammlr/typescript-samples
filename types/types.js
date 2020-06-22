@@ -28,6 +28,14 @@ function submitRequest(successCallback) {
     .then((data) => successCallback(data.id));
 }
 
+const cache = new Map();
+function addToCache(key, value) {
+  cache.set(key, value);
+}
+function getFromCache(key) {
+  cache.get(key);
+}
+
 function demoFunction() {
   add(1, 2);
   subtract(1, 2);

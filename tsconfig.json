@@ -5,6 +5,7 @@
     "esModuleInterop": true,
     "jsx": "react",
     "module": "es2015",
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "target": "ES2018"
   }
 }
